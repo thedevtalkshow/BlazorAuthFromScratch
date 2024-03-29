@@ -1,0 +1,45 @@
+﻿@using System.Security.Claims
+@using Microsoft.AspNetCore.Authentication
+<h3>MyOwnLogin</h3>
+
+<EditForm Model="@Model" OnSubmit="@Submit" FormName="MyLoginEditForm">
+    Name: <InputText @bind-Value="Model!.Name" /><br />
+    <button type="submit">Submit</button>
+</EditForm>
+
+@code {
+    [SupplyParameterFromForm]
+    public Credential? Model { get; set; }
+
+    [CascadingParameter]
+    private HttpContext HttpContext { get; set; } = default!;
+
+    protected override void OnInitialized()
+    {
+        Model ??= new();
+    }
+
+    private void Submit()
+    {
+        if (Model is not null)
+        {
+            Console.WriteLine($"User Name: {Model.Name}");
+            // Create security context
+            var claims = new List<Claim>
+                {
+                    new Claim(ClaimTypes.Name, Model.Name!),
+                };
+
+            var identity = new ClaimsIdentity(claims, "TdtsCookie");
+            var claimsPrincipal = new ClaimsPrincipal(identity);
+
+            HttpContext.SignInAsync("TdtsCookie", claimsPrincipal);
+        }
+    }
+
+    public class Credential
+    {
+        public string? Name { get; set; }
+
+    }
+}
