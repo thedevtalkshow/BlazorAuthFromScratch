@@ -10,7 +10,8 @@ builder.Services.AddRazorComponents();
 builder.Services.AddScoped<AuthenticationStateProvider, ServerAuthenticationStateProvider>();
 
 builder.Services.AddAuthorization();
-builder.Services.AddAuthentication();
+builder.Services.AddAuthentication()
+    .AddCookie("TdtsCookie");
 
 var app = builder.Build();
 
