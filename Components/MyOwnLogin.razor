@@ -1,5 +1,6 @@
 ﻿@using System.Security.Claims
 @using Microsoft.AspNetCore.Authentication
+@inject NavigationManager NavigationManager
 <h3>MyOwnLogin</h3>
 
 <EditForm Model="@Model" OnSubmit="@Submit" FormName="MyLoginEditForm">
@@ -34,6 +35,8 @@
             var claimsPrincipal = new ClaimsPrincipal(identity);
 
             HttpContext.SignInAsync("TdtsCookie", claimsPrincipal);
+
+            NavigationManager.NavigateTo("/");
         }
     }
 

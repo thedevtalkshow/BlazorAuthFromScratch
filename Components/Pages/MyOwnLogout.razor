@@ -1,0 +1,9 @@
+﻿@using Microsoft.AspNetCore.Authentication
+<h3>MyOwnLogout</h3>
+
+<a href="/Account/Logout">Logout</a>
+
+@code {
+    [CascadingParameter]
+    private HttpContext HttpContext { get; set; } = default!;
+}

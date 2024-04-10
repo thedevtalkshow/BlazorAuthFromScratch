@@ -29,5 +29,6 @@ app.UseStaticFiles();
 app.UseAntiforgery();
 
 app.MapRazorComponents<App>();
+app.MapIdentityEndpoints();
 
 app.Run();
