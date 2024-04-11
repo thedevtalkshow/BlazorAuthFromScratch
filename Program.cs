@@ -1,4 +1,5 @@
 using BlazorAuthFromScratch.Components;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.Server;
 
@@ -10,8 +11,20 @@ builder.Services.AddRazorComponents();
 builder.Services.AddScoped<AuthenticationStateProvider, ServerAuthenticationStateProvider>();
 
 builder.Services.AddAuthorization();
-builder.Services.AddAuthentication()
-    .AddCookie("TdtsCookie");
+builder.Services.AddAuthentication("TdtsCookie")
+    .AddCookie("TdtsCookie")
+    .AddGoogle(options =>
+    {
+        builder.Configuration.GetSection("Authentication:Google").Bind(options);
+        options.ClaimActions.MapJsonKey("urn:google:picture", "picture", "url");
+    }).
+    AddMicrosoftAccount(options =>
+    {
+        builder.Configuration.GetSection("Authentication:Microsoft").Bind(options);
+        //options.AuthorizationEndpoint = "https://login.microsoftonline.com/7339da3c-2dfd-4623-9303-fbbcfd900381/oauth2/v2.0/authorize";
+        //options.TokenEndpoint = "https://login.microsoftonline.com/7339da3c-2dfd-4623-9303-fbbcfd900381/oauth2/v2.0/token";
+    });
+
 
 var app = builder.Build();
 

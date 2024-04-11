@@ -1,0 +1,31 @@
+﻿@using System.Security.Claims
+@using Microsoft.AspNetCore.Authentication
+
+@inject NavigationManager NavigationManager
+
+<h3>Microsoft External Login</h3>
+
+<div>
+    You can log in using your Microsoft account.<br />
+    <form method="post" action="Account/PerformMicrosoftLogin">
+        <AntiforgeryToken />
+        <input type="hidden" name="returnUrl" value="@currentUrl" />
+        <button class="btn btn-primary">Log in with Microsoft</button>
+    </form>
+</div>
+
+@code {
+
+    private string? currentUrl;
+
+    protected override void OnInitialized()
+    {
+        NavigationManager.LocationChanged += OnLocationChanged;
+    }
+
+    private void OnLocationChanged(object? sender, LocationChangedEventArgs e)
+    {
+        currentUrl = NavigationManager.ToBaseRelativePath(e.Location);
+        StateHasChanged();
+    }
+}
