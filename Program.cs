@@ -21,8 +21,6 @@ builder.Services.AddAuthentication("TdtsCookie")
     AddMicrosoftAccount(options =>
     {
         builder.Configuration.GetSection("Authentication:Microsoft").Bind(options);
-        //options.AuthorizationEndpoint = "https://login.microsoftonline.com/7339da3c-2dfd-4623-9303-fbbcfd900381/oauth2/v2.0/authorize";
-        //options.TokenEndpoint = "https://login.microsoftonline.com/7339da3c-2dfd-4623-9303-fbbcfd900381/oauth2/v2.0/token";
     });
 
 
