@@ -9,23 +9,7 @@
     You can log in using your Google account.<br />
     <form method="post" action="Account/PerformGoogleLogin">
         <AntiforgeryToken />
-        <input type="hidden" name="returnUrl" value="@currentUrl" />
+        <input type="hidden" name="returnUrl" value="@NavigationManager.Uri" />
         <button class="btn btn-primary">Log in with Google</button>
     </form>
 </div>
-
-@code {
-
-    private string? currentUrl;
-
-    protected override void OnInitialized()
-    {
-        NavigationManager.LocationChanged += OnLocationChanged;
-    }
-
-    private void OnLocationChanged(object? sender, LocationChangedEventArgs e)
-    {
-        currentUrl = NavigationManager.ToBaseRelativePath(e.Location);
-        StateHasChanged();
-    }
-}

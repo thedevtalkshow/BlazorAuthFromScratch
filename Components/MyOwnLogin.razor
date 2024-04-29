@@ -36,7 +36,7 @@
 
             HttpContext.SignInAsync("TdtsCookie", claimsPrincipal);
 
-            NavigationManager.NavigateTo("/");
+            NavigationManager.Refresh();
         }
     }
 

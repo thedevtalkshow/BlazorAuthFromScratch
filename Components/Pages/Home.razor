@@ -9,37 +9,4 @@
 
 Welcome to your new app.
 
-<AuthorizeView>
-    <Authorized>
-        <p>You are authorized.</p>
-        <p>You are logged in as: @context?.User.Identity?.Name</p>
-
-        @switch (context?.User.Identity?.AuthenticationType)
-        {
-            case "Google":
-                <p>You logged in from Google.</p>
-                @if (context?.User.Claims.FirstOrDefault(c => c.Type == "urn:google:picture") is not null)
-                {
-                    <img src="@context?.User.Claims.First(c => c.Type == "urn:google:picture")?.Value" alt="Profile Picture" />
-                };
-                break;
-            case "TdtsCookie":
-                <p>You logged in from our own internal user management.</p>
-                break;
-            case "Microsoft":
-                <p>You logged in from a Microsoft Account.</p>
-                break;
-            default:
-                <p>¯_ (ツ)_/¯  🤷‍♂️</p>
-                break;
-        }
-        <MyOwnLogout></MyOwnLogout>
-    </Authorized>
-    <NotAuthorized>
-        <p>You are not authorized.</p>
-        <MyOwnLogin></MyOwnLogin>
-        <p></p>
-        <GoogleExternalLogin></GoogleExternalLogin>
-        <MicrosoftExternalLogin></MicrosoftExternalLogin>
-    </NotAuthorized>
-</AuthorizeView>
+<TheBigAccountStatusComponent></TheBigAccountStatusComponent>

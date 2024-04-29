@@ -18,14 +18,7 @@ internal static class IdentityEndpointExtensions
             return TypedResults.LocalRedirect($"/");
         });
 
-        accountGroup.MapGet("/PerformGoogleLogin", (
-            HttpContext context
-            ) =>
-        {
-            
-            return TypedResults.LocalRedirect($"/");
-            
-        });
+        accountGroup.MapGet("/PerformGoogleLogin", (HttpContext context) => TypedResults.LocalRedirect($"/"));
 
         accountGroup.MapPost("/PerformGoogleLogin", async (
             HttpContext context,

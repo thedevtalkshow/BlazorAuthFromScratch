@@ -5,27 +5,16 @@
 
 <h3>Microsoft External Login</h3>
 
+@if ( 1 == 1 )
+{
+    <p>The current Uri is: @NavigationManager.Uri </p>
+}
+
 <div>
     You can log in using your Microsoft account.<br />
     <form method="post" action="Account/PerformMicrosoftLogin">
         <AntiforgeryToken />
-        <input type="hidden" name="returnUrl" value="@currentUrl" />
+        <input type="hidden" name="returnUrl" value="@NavigationManager.Uri" />
         <button class="btn btn-primary">Log in with Microsoft</button>
     </form>
 </div>
-
-@code {
-
-    private string? currentUrl;
-
-    protected override void OnInitialized()
-    {
-        NavigationManager.LocationChanged += OnLocationChanged;
-    }
-
-    private void OnLocationChanged(object? sender, LocationChangedEventArgs e)
-    {
-        currentUrl = NavigationManager.ToBaseRelativePath(e.Location);
-        StateHasChanged();
-    }
-}
