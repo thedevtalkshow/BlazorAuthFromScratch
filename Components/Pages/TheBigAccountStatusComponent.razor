@@ -11,7 +11,7 @@
                 <p>You logged in from Google.</p>
                 @if (context?.User.Claims.FirstOrDefault(c => c.Type == "urn:google:picture") is not null)
                 {
-                    <img src="@context?.User.Claims.First(c => c.Type == "urn:google:picture")?.Value" alt="Profile Picture" />
+                    <img src="@context?.User.Claims.First(c => c.Type == "urn:google:picture")?.Value" alt="Profile Picture" referrerpolicy="no-referrer" />
                 };
                 break;
             case "TdtsCookie":
