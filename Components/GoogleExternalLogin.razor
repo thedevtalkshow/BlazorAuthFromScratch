@@ -1,0 +1,15 @@
+﻿@using System.Security.Claims
+@using Microsoft.AspNetCore.Authentication
+
+@inject NavigationManager NavigationManager
+
+<h3>Google External Login</h3>
+
+<div>
+    You can log in using your Google account.<br />
+    <form method="post" action="Account/PerformGoogleLogin">
+        <AntiforgeryToken />
+        <input type="hidden" name="returnUrl" value="@NavigationManager.Uri" />
+        <button class="btn btn-primary">Log in with Google</button>
+    </form>
+</div>

@@ -1,0 +1,17 @@
+﻿@using System.Security.Claims
+@using Microsoft.AspNetCore.Authentication
+
+@inject NavigationManager NavigationManager
+
+<h3>Microsoft External Login</h3>
+
+<p>The current Uri is: @NavigationManager.Uri </p>
+
+<div>
+    You can log in using your Microsoft account.<br />
+    <form method="post" action="Account/PerformMicrosoftLogin">
+        <AntiforgeryToken />
+        <input type="hidden" name="returnUrl" value="@NavigationManager.Uri" />
+        <button class="btn btn-primary">Log in with Microsoft</button>
+    </form>
+</div>

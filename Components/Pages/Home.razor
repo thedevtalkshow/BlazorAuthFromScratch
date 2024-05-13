@@ -9,14 +9,24 @@
 
 Welcome to your new app.
 
+
 <AuthorizeView>
     <Authorized>
         <p>You are authorized.</p>
         <p>You are logged in as: @context?.User.Identity?.Name</p>
+
+        @if (context?.User.Claims.FirstOrDefault(c => c.Type == "urn:google:picture") is not null)
+        {
+            <img src="@context?.User.Claims.First(c => c.Type == "urn:google:picture")?.Value" alt="Profile Picture" referrerpolicy="no-referrer" />
+        }
+
         <MyOwnLogout></MyOwnLogout>
     </Authorized>
     <NotAuthorized>
         <p>You are not authorized.</p>
         <MyOwnLogin></MyOwnLogin>
+        <p></p>
+        <GoogleExternalLogin></GoogleExternalLogin>
+        <MicrosoftExternalLogin></MicrosoftExternalLogin>
     </NotAuthorized>
 </AuthorizeView>
