@@ -1,0 +1,66 @@
+﻿@page "/account/login"
+@using System.Security.Claims
+@using Microsoft.AspNetCore.Authentication
+
+@inject NavigationManager navMgr
+
+<h3>Login</h3>
+
+This will be the page to login.
+<br />
+
+<h3>Login</h3>
+<EditForm Context="LoginForm" Model="@MyFormModel" OnSubmit="@Submit" FormName="MyLoginForm">
+    <InputText @bind-Value="MyFormModel!.Name" placeholder="Username" />
+    <button type="submit" class="btn btn-primary">Login</button>
+</EditForm>
+
+<h3>Microsoft Login</h3>
+<div>
+    You can log in using your Microsoft account.<br />
+    <form method="post" action="Account/PerformMicrosoftLogin">
+        <AntiforgeryToken />
+        <input type="hidden" name="returnUrl" value="@navMgr.Uri" />
+        <button class="btn btn-primary">Log in with Microsoft</button>
+    </form>
+</div>
+
+@code {
+    [CascadingParameter]
+    private HttpContext HttpContext { get; set; } = default!;
+
+    [SupplyParameterFromForm]
+    public Credential? MyFormModel { get; set; }
+
+    protected override void OnInitialized()
+    {
+        MyFormModel ??= new();
+
+        Console.WriteLine("Login page initialized");
+    }
+
+    private void Submit()
+    {
+        Console.WriteLine("Form Submitted");
+
+        if (MyFormModel is not null)
+        {
+            Console.WriteLine($"User Name: {MyFormModel.Name}");
+            // Create security context
+            var claims = new List<Claim>
+                {
+                    new Claim(ClaimTypes.Name, MyFormModel.Name!),
+                };
+
+            var identity = new ClaimsIdentity(claims, "TdtsCookie");
+            var claimsPrincipal = new ClaimsPrincipal(identity);
+
+            HttpContext.SignInAsync("TdtsCookie", claimsPrincipal);
+        }
+    }
+
+    public class Credential
+    {
+        public string? Name { get; set; }
+    }
+}
