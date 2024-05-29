@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.34916.146
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorAuthFromScratchWasm", "BlazorAuthFromScratchWasm\BlazorAuthFromScratchWasm\BlazorAuthFromScratchWasm.csproj", "{AAD448A4-039E-4874-A654-805C1127C5C3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorAuthFromScratchWasm.Client", "BlazorAuthFromScratchWasm\BlazorAuthFromScratchWasm.Client\BlazorAuthFromScratchWasm.Client.csproj", "{94C5E3AA-EC83-4039-A2EC-0C2C5E2D8F25}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AAD448A4-039E-4874-A654-805C1127C5C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AAD448A4-039E-4874-A654-805C1127C5C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AAD448A4-039E-4874-A654-805C1127C5C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AAD448A4-039E-4874-A654-805C1127C5C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94C5E3AA-EC83-4039-A2EC-0C2C5E2D8F25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94C5E3AA-EC83-4039-A2EC-0C2C5E2D8F25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94C5E3AA-EC83-4039-A2EC-0C2C5E2D8F25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94C5E3AA-EC83-4039-A2EC-0C2C5E2D8F25}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F91D3479-B2C6-4275-879A-11DD415C1E20}
+	EndGlobalSection
+EndGlobal

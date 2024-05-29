@@ -1,0 +1,22 @@
+﻿@page "/login"
+
+<h3>Login</h3>
+
+This will be the page to login.
+
+<AuthorizeView>
+    <Authorized>
+        <p>Hello @context.User.Identity?.Name!</p>
+        <p>You are already Logged In.</p>
+    </Authorized>
+    <NotAuthorized>
+        <p>You are not Logged In.</p>
+    </NotAuthorized>
+</AuthorizeView>
+
+@code {
+    protected override void OnInitialized()
+    {
+        Console.WriteLine("Login page initialized");
+    }   
+}
