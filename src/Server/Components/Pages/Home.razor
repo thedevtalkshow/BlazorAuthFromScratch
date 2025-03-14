@@ -17,8 +17,21 @@ Welcome to your new app.
 
         @if (context?.User.Claims.FirstOrDefault(c => c.Type == "urn:google:picture") is not null)
         {
-            <img src="@context?.User.Claims.First(c => c.Type == "urn:google:picture")?.Value" alt="Profile Picture" referrerpolicy="no-referrer" />
+            <p>Google Account Picture: <img src="@context?.User.Claims.First(c => c.Type == "urn:google:picture")?.Value" alt="Profile Picture" referrerpolicy="no-referrer" /></p>
         }
+
+        @if (context?.User.Claims.FirstOrDefault(c => c.Type == "urn:microsoft:picture") is not null)
+        {
+            <p>Microsoft Account Picture: <img src="data:image/png;base64,@context?.User.Claims.First(c => c.Type == "urn:microsoft:picture")?.Value" alt="Profile Picture" referrerpolicy="no-referrer" /></p>
+        }
+
+        <h3>User Claims</h3>
+        <ul>
+            @foreach (var claim in context.User.Claims)
+            {
+                <li><b>@claim.Type:</b> @claim.Value</li>
+            }
+        </ul>
 
         <MyOwnLogout></MyOwnLogout>
     </Authorized>
